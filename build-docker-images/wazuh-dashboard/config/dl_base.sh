@@ -22,4 +22,8 @@ fi
 
 
 curl -o wazuh-dashboard-base.tar.xz https://${REPOSITORY}/stack/dashboard/wazuh-dashboard-base-${WAZUH_VERSION}-${WAZUH_TAG_REVISION}-linux-x64.tar.xz
-tar -xf wazuh-dashboard-base.tar.xz --directory  $INSTALL_DIR --strip-components=1
+curl -o opensearch-dashboards.tar.gz https://artifacts.opensearch.org/releases/bundle/opensearch-dashboards/2.8.0/opensearch-dashboards-2.8.0-linux-arm64.tar.gz
+# ARM64
+tar -xf wazuh-dashboard-base.tar.xz --directory $INSTALL_DIR --strip-components=1 --exclude="wazuh-dashboard-base/bin" --exclude="wazuh-dashboard-base/node"
+tar -xf opensearch-dashboards.tar.gz --directory $INSTALL_DIR --strip-components=1 opensearch-dashboards-2.8.0/bin opensearch-dashboards-2.8.0/node
+rm -f opensearch-dashboards.tar.gz wazuh-dashboard-base.tar.xz

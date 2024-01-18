@@ -46,7 +46,11 @@ fi
 
 
 curl -o ${INDEXER_FILE} https://${REPOSITORY}/stack/indexer/${BASE_FILE}
-tar -xf ${INDEXER_FILE}
+tar -xf ${INDEXER_FILE} --exclude="wazuh-indexer-base/jdk" --exclude="wazuh-indexer-base/bin"
+# ARM64
+curl -o opensearch-2.8.0.tar.gz https://artifacts.opensearch.org/releases/bundle/opensearch/2.8.0/opensearch-2.8.0-linux-arm64.tar.gz
+tar -xf opensearch-2.8.0.tar.gz  --directory wazuh-indexer-base --strip-components=1 opensearch-2.8.0/bin opensearch-2.8.0/jdk
+rm -f opensearch-2.8.0.tar.gz
 
 ## TOOLS
 

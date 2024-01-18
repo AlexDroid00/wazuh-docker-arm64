@@ -1,3 +1,14 @@
+# How to build
+```bash
+git clone https://github.com/AlexDroid00/wazuh-docker-arm64.git -b 4.7.2-arm64
+cd wazuh-docker/
+sudo ./build-docker-images/build-images.sh
+sudo docker build -t wazuh/wazuh-certs-generator:0.0.1 indexer-certs-creator/.
+cd single-node/
+sudo docker compose -f generate-indexer-certs.yml run --rm generator
+sudo docker compose up -d
+```
+
 # Wazuh containers for Docker
 
 [![Slack](https://img.shields.io/badge/slack-join-blue.svg)](https://wazuh.com/community/join-us-on-slack/)
